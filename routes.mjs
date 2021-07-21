@@ -12,8 +12,12 @@ export default function bindRoutes(app) {
   const DrummersController = initDrummersController(db);
   const ReservationsController = initReservationsController(db);
 
+  // gets details of 1 drummer
   app.get('/drummer/:id', DrummersController.oneDrummer);
+  // creates an entry into the reservations table
   app.post('/reservation/:drummer_id', ReservationsController.reservationPost);
+  // gets all reservations of a single drummer (id specified in :drummer_id)
   app.get('/reservations/:drummer_id', ReservationsController.drummersReservations);
+  // gets details of all drummers
   app.get('/', DrummersController.allDrummers);
 }
