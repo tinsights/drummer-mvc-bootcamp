@@ -8,12 +8,15 @@
   </head>
   <body>
     <p><%= drummer.name %></p>
+    <p>$<%= drummer.price %> / hr</p>
+    <h2>Reservations</h2>
     <% if(reservations.length > 0) { %> <% reservations.forEach((reservation) => { %>
     <p><%= reservation.dataValues.date %></p>
     <% }) %> <% } %>
+    <h3>Make a Booking:</h3>
     <form action="/drummer/<%= drummer.id %>" method="POST">
       <input type="date" name="reservation_date" />
-      <button>Submit</button>
+      <button>Submit Booking</button>
     </form>
   </body>
 </html>

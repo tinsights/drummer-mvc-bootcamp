@@ -1,18 +1,21 @@
-export default function initDrummerModel(sequelize, DataTypes) {
-  return sequelize.define('drummer', {
+export default function initInstrumentModel(sequelize, DataTypes) {
+  return sequelize.define('instrument', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-    name: {
-      type: DataTypes.TEXT,
+    date: {
+      type: DataTypes.DATE,
     },
-    price: {
-      type: DataTypes.NUMERIC,
+    drummerId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'drummers',
+        key: 'id',
+      },
     },
-    // ... [<OTHER_COLUMNS>]
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -21,7 +24,8 @@ export default function initDrummerModel(sequelize, DataTypes) {
       allowNull: false,
       type: DataTypes.DATE,
     },
-  }, {
+  },
+  {
     // The underscored option makes Sequelize reference snake_case names in the DB.
     underscored: true,
   });

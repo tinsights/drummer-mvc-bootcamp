@@ -2,6 +2,7 @@ export default function initDrummersController(db) {
   const index = (req, res) => {
     db.Drummer.findAll()
       .then((drummers) => {
+        console.log('drummers :>> ', drummers);
         res.render('drummers', { drummers });
       })
       .catch((error) => console.log(error));

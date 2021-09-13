@@ -1,6 +1,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('drummers', {
+    await queryInterface.addColumn('drummers', 'price', { type: Sequelize.NUMERIC });
+    await queryInterface.createTable('instruments', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,25 +10,6 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-      },
-      created_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updated_at: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-    });
-    await queryInterface.createTable('reservations', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      date: {
-        type: Sequelize.DATE,
       },
       drummer_id: {
         type: Sequelize.INTEGER,
@@ -49,7 +31,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('reservations');
-    await queryInterface.dropTable('drummers');
+    await queryInterface.dropTable('instruments');
   },
 };
